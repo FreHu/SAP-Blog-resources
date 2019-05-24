@@ -1,4 +1,5 @@
 CLASS lcl_tests DEFINITION FINAL FOR TESTING
+  INHERITING FROM zcl_abap_unit_wrapper
   DURATION SHORT
   RISK LEVEL HARMLESS.
 
@@ -38,7 +39,7 @@ CLASS lcl_tests IMPLEMENTATION.
     DATA(result) = zfh_calculator=>calculate( input ).
 
     " then
-    cl_abap_unit_assert=>assert_equals( exp = 4 act = result ).
+    assert_equals( exp = 4 act = result ).
 
   ENDMETHOD.
 
@@ -51,7 +52,7 @@ CLASS lcl_tests IMPLEMENTATION.
     DATA(result) = zfh_calculator=>calculate( input ).
 
     " then
-    cl_abap_unit_assert=>assert_equals( exp = 0 act = result ).
+    assert_equals( exp = 0 act = result ).
 
   ENDMETHOD.
 
@@ -64,7 +65,7 @@ CLASS lcl_tests IMPLEMENTATION.
     DATA(result) = zfh_calculator=>calculate( input ).
 
     " then
-    cl_abap_unit_assert=>assert_equals( exp = 6 act = result ).
+    assert_equals( exp = 6 act = result ).
 
   ENDMETHOD.
 
@@ -77,45 +78,45 @@ CLASS lcl_tests IMPLEMENTATION.
     DATA(result) = zfh_calculator=>calculate( input ).
 
     " then
-    cl_abap_unit_assert=>assert_equals( exp = 4 act = result ).
+    assert_equals( exp = 4 act = result ).
 
   ENDMETHOD.
 
   METHOD test_calculate.
-    cl_abap_unit_assert=>assert_equals(
+    assert_equals(
       act = zfh_calculator=>calculate( `2+2` )
       exp = 4 ).
 
-    cl_abap_unit_assert=>assert_equals(
+    assert_equals(
       act = zfh_calculator=>calculate( `2-2` )
       exp = 0 ).
 
-    cl_abap_unit_assert=>assert_equals(
+    assert_equals(
       act = zfh_calculator=>calculate( `2*3` )
       exp = 6 ).
 
-    cl_abap_unit_assert=>assert_equals(
+    assert_equals(
       act = zfh_calculator=>calculate( `4/2` )
       exp = 2 ).
   ENDMETHOD.
 
   METHOD test_calculate_no_quit.
-    cl_abap_unit_assert=>assert_equals(
+    assert_equals(
       act = zfh_calculator=>calculate( `2+2` )
       exp = 4
       quit = if_aunit_constants=>quit-no ).
 
-    cl_abap_unit_assert=>assert_equals(
+    assert_equals(
       act = zfh_calculator=>calculate( `2-2` )
       exp = 0
       quit = if_aunit_constants=>quit-no ).
 
-    cl_abap_unit_assert=>assert_equals(
+    assert_equals(
       act = zfh_calculator=>calculate( `2*3` )
       exp = 6
       quit = if_aunit_constants=>quit-no ).
 
-    cl_abap_unit_assert=>assert_equals(
+    assert_equals(
       act = zfh_calculator=>calculate( `4/2` )
       exp = 2
       quit = if_aunit_constants=>quit-no ).
@@ -143,7 +144,7 @@ CLASS lcl_tests IMPLEMENTATION.
       DATA(result) = f_cut->calculate( <test_case>-input ).
 
       " then
-      cl_abap_unit_assert=>assert_equals(
+      assert_equals(
         exp = <test_case>-exp
         act = result
         msg = |Failed at { <test_case>-input }. Expected { <test_case>-exp }, received { result }|
@@ -168,7 +169,7 @@ CLASS lcl_tests IMPLEMENTATION.
 
     LOOP AT test ASSIGNING FIELD-SYMBOL(<test_case>).
       DATA(result) = f_cut->tested_method( <test_case>-input ).
-      cl_abap_unit_assert=>assert_equals(
+      assert_equals(
         exp = <test_case>-exp
         act = result
         msg = |Failed at { <test_case>-input }.| &&
