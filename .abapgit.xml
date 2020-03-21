@@ -13,6 +13,7 @@
     <item>/.travis.yml</item>
     <item>/.gitlab-ci.yml</item>
     <item>/abaplint.json</item>
+    <item>/src/abap_spec.xml</item>
    </IGNORE>
   </DATA>
  </asx:values>
